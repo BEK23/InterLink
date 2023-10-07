@@ -2,7 +2,7 @@ import Logo from "../logo";
 
 export const Navbar = () => {
   return (
-    <div className="fixed z-30 flex w-full items-center bg-foreground px-10 py-4 shadow transition-colors duration-300 dark:bg-foreground">
+    <div className="fixed z-30 flex w-full items-center border-b bg-background px-10 py-4 shadow transition-colors duration-300">
       <div className="flex h-full flex-none items-center justify-center duration-500 ease-in-out dark:text-white">
         <Logo />
       </div>
