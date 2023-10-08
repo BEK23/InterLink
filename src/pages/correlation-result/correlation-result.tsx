@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCorrelation } from "@/store/correlation-store";
-import { dataset } from "@/data/data";
+import { dataset } from "@/data";
 import { CorrelationDatasetItem } from "@/pages/correlation-result/components/correlation-dataset-item";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";

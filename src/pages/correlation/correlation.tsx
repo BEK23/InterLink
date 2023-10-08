@@ -13,7 +13,7 @@ import { StarIcon } from "lucide-react";
 import { cn } from "@/utils";
 import { useCorrelation } from "@/store/correlation-store";
 import { useNavigate } from "react-router-dom";
-import { dataset } from "@/data/data";
+import { dataset } from "@/data";
 
 export default function CorrelationPage() {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ export default function CorrelationPage() {
           <CardTitle>Recent Correlations</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 px-0">
-          {dataset.map((item) => (
+          {dataset.reverse().map((item) => (
             <Card key={item.id} className="p-0">
               <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
@@ -84,6 +84,7 @@ export default function CorrelationPage() {
                   <div className="flex gap-1">
                     {[1, 2, 3, 4, 5].map((rate) => (
                       <StarIcon
+                        key={rate}
                         size={16}
                         className={cn(
                           item.score && item.score >= rate && "text-yellow-300"
@@ -93,8 +94,8 @@ export default function CorrelationPage() {
                   </div>
                 </div>
                 <div className="mr-4 flex">
-                  {item.avatars?.map((item) => (
-                    <Avatar>
+                  {item.avatars?.map((item, index) => (
+                    <Avatar key={index}>
                       <AvatarImage src={item?.url} />
                       <AvatarFallback>{item?.name[0]}</AvatarFallback>
                     </Avatar>
