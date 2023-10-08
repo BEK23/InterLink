@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar/navbar";
 import HomePage from "@/pages/home";
 import { Route, Routes } from "react-router-dom";
 import CorrelationPage from "@/pages/correlation";
+import DatasetPage from "@/pages/dataset";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/correlation" element={<CorrelationPage />} />
-          {/*<Route path="/dataset" element={<HomePage />} />*/}
+          <Route path="/dataset" element={<DatasetPage />} />
         </Routes>
       </div>
     </div>
