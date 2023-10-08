@@ -23,7 +23,7 @@ export const Navbar = () => {
         <Link
           to="/correlation"
           className={cn(
-            pathname === "/correlation" && "text-primary",
+            pathname.startsWith("/correlation") && "text-primary",
             "transition"
           )}
         >

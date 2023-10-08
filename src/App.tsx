@@ -3,6 +3,7 @@ import HomePage from "@/pages/home";
 import { Route, Routes } from "react-router-dom";
 import CorrelationPage from "@/pages/correlation";
 import DatasetPage from "@/pages/dataset";
+import CorrelationResultPage from "@/pages/correlation-result";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/correlation" element={<CorrelationPage />} />
+          <Route path="/correlation/:id" element={<CorrelationResultPage />} />
           <Route path="/dataset" element={<DatasetPage />} />
         </Routes>
       </div>
