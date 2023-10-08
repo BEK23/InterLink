@@ -12,6 +12,7 @@ export default function HomePage() {
         speed={50}
         className="h-[250px] w-[60%] text-center text-6xl"
         repeat={Infinity}
+        cursor={false}
       />
       <Input placeholder="Search..." className="w-[80%]" />
     </div>
