@@ -1,5 +1,6 @@
 import { Input } from "ui/input";
 import { TypeAnimation } from "react-type-animation";
+import { SearchIcon } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -14,7 +15,13 @@ export default function HomePage() {
         repeat={Infinity}
         cursor={false}
       />
-      <Input placeholder="Search..." className="w-[80%]" />
+      <div className="relative w-[80%]">
+        <Input placeholder="Search..." />
+        <SearchIcon
+          className="absolute right-6 top-1/2 -translate-y-1/2 text-muted-foreground"
+          size={18}
+        />
+      </div>
     </div>
   );
 }
