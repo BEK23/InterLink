@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "ui/card";
 import { Button } from "ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "ui/avatar";
 
 import avatar1 from "../../../public/avatar-1.png";
@@ -17,34 +16,48 @@ import avatar4 from "../../../public/avatar-4.png";
 import avatar5 from "../../../public/avatar-5.png";
 import { StarIcon } from "lucide-react";
 import { cn } from "@/utils";
+import { useCorrelation } from "@/store/correlation-store";
 
 export default function CorrelationPage() {
+  const datasets = useCorrelation((state) => state.datasets);
+
+  const first =
+    datasets.length > 0 ? recentCorrelations[parseInt(datasets[0])] : null;
+  const second =
+    datasets.length > 1 ? recentCorrelations[parseInt(datasets[1])] : null;
+
   return (
     <div className="m-auto max-w-screen-xl">
       <div className="mb-5 flex items-center gap-4">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Card className="grow">
-              <CardContent className="flex h-60 cursor-pointer flex-col items-center justify-center gap-1 p-6">
+        <Card className="grow">
+          <CardContent className="group relative flex h-60 cursor-pointer flex-col items-center justify-center gap-1 p-6">
+            {first ? (
+              <div className="max-w-[300px] text-center text-xl">
+                {first.title}
+              </div>
+            ) : (
+              <>
                 <div className="text-3xl font-medium">SELECT</div>
                 <div className="text-xl">first dataset</div>
-              </CardContent>
-            </Card>
-          </DialogTrigger>
-          <DialogContent></DialogContent>
-        </Dialog>
+              </>
+            )}
+          </CardContent>
+        </Card>
         <Button>Correlate</Button>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Card className="grow">
-              <CardContent className="flex h-60 cursor-pointer flex-col items-center justify-center gap-1 p-6">
+        <Card className="grow">
+          <CardContent className="flex h-60 cursor-pointer flex-col items-center justify-center gap-1 p-6">
+            {second ? (
+              <div className="max-w-[300px] text-center text-xl">
+                {second.title}
+              </div>
+            ) : (
+              <>
                 <div className="text-3xl font-medium">SELECT</div>
                 <div className="text-xl">second dataset</div>
-              </CardContent>
-            </Card>
-          </DialogTrigger>
-          <DialogContent></DialogContent>
-        </Dialog>
+              </>
+            )}
+          </CardContent>
+        </Card>
       </div>
       <Card className="border-none p-0">
         <CardHeader className="px-0">

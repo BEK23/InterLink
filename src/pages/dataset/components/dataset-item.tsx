@@ -6,25 +6,34 @@ import {
   CardHeader,
   CardTitle,
 } from "ui/card";
-import { ChevronDown, ChevronUp, StarIcon } from "lucide-react";
+import { CheckIcon, PlusIcon, StarIcon } from "lucide-react";
 import { cn } from "@/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "ui/avatar";
 import { Button } from "ui/button";
 import { useState } from "react";
+import { useCorrelation } from "@/store/correlation-store";
 
 export const DatasetItem = ({ item }: { item: any }) => {
   const [open, setOpen] = useState(false);
+
+  const datasets = useCorrelation((state) => state.datasets);
+  const add = useCorrelation((state) => state.addDateset);
+  const remove = useCorrelation((state) => state.removeDataset);
 
   return (
     <Card key={item.id} className="p-0">
       <CardHeader className="relative">
         <CardTitle>{item.title}</CardTitle>
         <CardDescription>Created Date: {item.date}</CardDescription>
-        <div
-          className="absolute right-6 top-3 cursor-pointer"
-          onClick={() => setOpen((prevState) => !prevState)}
-        >
-          {open ? <ChevronUp /> : <ChevronDown />}
+        <div className="absolute right-6 top-3 cursor-pointer hover:text-primary">
+          {datasets.includes(item.id) ? (
+            <CheckIcon
+              className="text-primary"
+              onClick={() => remove(item.id)}
+            />
+          ) : (
+            <PlusIcon onClick={() => add(item.id)} />
+          )}
         </div>
       </CardHeader>
       <CardContent className={cn(!open && "line-clamp-2 text-ellipsis")}>
@@ -53,8 +62,12 @@ export const DatasetItem = ({ item }: { item: any }) => {
             </Avatar>
           ))}
         </div>
-        <Button size="sm" variant="outline">
-          Read More
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => setOpen((prevState) => !prevState)}
+        >
+          Details
         </Button>
       </CardFooter>
     </Card>
