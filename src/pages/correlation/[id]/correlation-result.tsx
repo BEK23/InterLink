@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCorrelation } from "@/store/correlation-store";
 import { dataset } from "@/data";
-import { CorrelationDatasetItem } from "@/pages/correlation-result/components/correlation-dataset-item";
+import { CorrelationDatasetItem } from "@/pages/correlation/[id]/components/correlation-dataset-item";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import { Card, CardContent, CardHeader, CardTitle } from "ui/card";
@@ -13,8 +13,8 @@ const CorrelationResultPage = () => {
 
   const datasets = useCorrelation((state) => state.datasets);
 
-  const first = datasets.length > 0 ? dataset[parseInt(datasets[0])] : null;
-  const second = datasets.length > 1 ? dataset[parseInt(datasets[1])] : null;
+  const first = dataset[parseInt(datasets[0])];
+  const second = dataset[parseInt(datasets[1])];
 
   useEffect(() => {
     async function getData() {
