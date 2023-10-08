@@ -3,8 +3,9 @@ import avatar2 from "../../public/avatar-2.png";
 import avatar3 from "../../public/avatar-3.png";
 import avatar4 from "../../public/avatar-4.png";
 import avatar5 from "../../public/avatar-5.png";
+import { IDateset } from "@/type";
 
-export const dataset = [
+export const dataset: IDateset = [
   {
     id: "0",
     title: "Deepwater CTD - 5_03_029.ctd.nc - 26.77N, -94.83W - 1993-06-02",

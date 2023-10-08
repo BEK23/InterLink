@@ -6,17 +6,17 @@ import {
   CardHeader,
   CardTitle,
 } from "ui/card";
-import { CheckIcon, PlusIcon, StarIcon } from "lucide-react";
+import { CheckIcon, PlusIcon } from "lucide-react";
 import { cn } from "@/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "ui/avatar";
-import { Button } from "ui/button";
 import { useState } from "react";
 import { useCorrelation } from "@/store/correlation-store";
+import { IData } from "@/type";
+import { ItemFooter } from "@/pages/dataset/components/item-footer";
 
-export const DatasetItem = ({ item }: { item: any }) => {
+export const DatasetItem = ({ item }: { item: IData }) => {
   const [open, setOpen] = useState(false);
 
-  const datasets = useCorrelation((state) => state.datasets);
+  const IDs = useCorrelation((state) => state.datasets);
   const add = useCorrelation((state) => state.addDateset);
   const remove = useCorrelation((state) => state.removeDataset);
 
@@ -26,7 +26,7 @@ export const DatasetItem = ({ item }: { item: any }) => {
         <CardTitle>{item.title}</CardTitle>
         <CardDescription>Created Date: {item.date}</CardDescription>
         <div className="absolute right-6 top-3 cursor-pointer hover:text-primary">
-          {datasets.includes(item.id) ? (
+          {IDs.includes(item.id) ? (
             <CheckIcon
               className="text-primary"
               onClick={() => remove(item.id)}
@@ -41,34 +41,7 @@ export const DatasetItem = ({ item }: { item: any }) => {
         {open && <div>{/* Data  */}</div>}
       </CardContent>
       <CardFooter className="justify-end pt-4">
-        <div className="mr-auto flex items-center gap-2">
-          Rate:
-          <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((rate) => (
-              <StarIcon
-                size={16}
-                className={cn(
-                  item.score && item.score >= rate && "text-yellow-300"
-                )}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="mr-4 flex">
-          {item.avatars?.map((item: any) => (
-            <Avatar>
-              <AvatarImage src={item?.url} />
-              <AvatarFallback>{item?.name[0]}</AvatarFallback>
-            </Avatar>
-          ))}
-        </div>
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={() => setOpen((prevState) => !prevState)}
-        >
-          Details
-        </Button>
+        <ItemFooter item={item} toggle={setOpen} />
       </CardFooter>
     </Card>
   );

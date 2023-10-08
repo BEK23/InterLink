@@ -3,7 +3,7 @@ import HomePage from "@/pages/home";
 import { Route, Routes } from "react-router-dom";
 import CorrelationPage from "@/pages/correlation";
 import DatasetPage from "@/pages/dataset";
-import CorrelationResultPage from "@/pages/correlation-result";
+import CorrelationResultPage from "@/pages/correlation/[id]";
 
 function App() {
   return (
