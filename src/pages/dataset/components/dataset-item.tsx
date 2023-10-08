@@ -16,7 +16,7 @@ import { ItemFooter } from "@/pages/dataset/components/item-footer";
 export const DatasetItem = ({ item }: { item: IData }) => {
   const [open, setOpen] = useState(false);
 
-  const ids = useCorrelation((state) => state.datasets);
+  const IDs = useCorrelation((state) => state.datasets);
   const add = useCorrelation((state) => state.addDateset);
   const remove = useCorrelation((state) => state.removeDataset);
 
@@ -26,7 +26,7 @@ export const DatasetItem = ({ item }: { item: IData }) => {
         <CardTitle>{item.title}</CardTitle>
         <CardDescription>Created Date: {item.date}</CardDescription>
         <div className="absolute right-6 top-3 cursor-pointer hover:text-primary">
-          {ids.includes(item.id) ? (
+          {IDs.includes(item.id) ? (
             <CheckIcon
               className="text-primary"
               onClick={() => remove(item.id)}
@@ -41,10 +41,7 @@ export const DatasetItem = ({ item }: { item: IData }) => {
         {open && <div>{/* Data  */}</div>}
       </CardContent>
       <CardFooter className="justify-end pt-4">
-        <ItemFooter
-          item={item}
-          toggle={() => setOpen((prevState) => !prevState)}
-        />
+        <ItemFooter item={item} toggle={setOpen} />
       </CardFooter>
     </Card>
   );

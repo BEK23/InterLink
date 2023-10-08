@@ -3,10 +3,11 @@ import { cn } from "@/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "ui/avatar";
 import { Button } from "ui/button";
 import { IData } from "@/type";
+import { Dispatch, SetStateAction } from "react";
 
 interface ItemFooterProps {
   item: IData;
-  toggle: () => void;
+  toggle: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ItemFooter = ({ item, toggle }: ItemFooterProps) => {
@@ -32,7 +33,11 @@ export const ItemFooter = ({ item, toggle }: ItemFooterProps) => {
           </Avatar>
         ))}
       </div>
-      <Button size="sm" variant="outline" onClick={toggle}>
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={() => toggle((prevState) => !prevState)}
+      >
         Read More
       </Button>
     </>

@@ -27,10 +27,7 @@ export const CorrelationDatasetItem = ({
         {open && <p>{item.description}</p>}
       </CardContent>
       <CardFooter className="justify-end pt-4">
-        <ItemFooter
-          item={item}
-          toggle={() => setOpen((prevState) => !prevState)}
-        />
+        <ItemFooter item={item} toggle={setOpen} />
       </CardFooter>
     </Card>
   );
